@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+    <body>
+        <div class="jumbotron">
+            <h1>Volatile Sketchboard</h1>
+        </div>
+        <div id="roomManager">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <th>
+                        Join an existing room
+                    </th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="roomID">Room ID:</label>
+                        <input type="text" value="" id="roomID">
+                        <button id="joinRoomButton" class="toolbarButton">Join</button>
+                    </td>
+                    <td>
+                        <button style="width: 100%;" id="createRoomButton" class="toolbarButton">Create New Room</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+
+<script src="~/Scripts/js/fabric.js"></script>
+<script src="~/Scripts/VolatileCanvas.js"></script>
