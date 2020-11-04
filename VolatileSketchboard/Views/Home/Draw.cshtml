@@ -3,36 +3,123 @@
     ViewBag.Title = "Volatile Sketchboard";
 }
 
-<h2>Draw</h2>
-<div class="container">
-    <input type="text" id="message" />
-    <input type="button" id="sendmessage" value="Send" />
-    <input type="hidden" id="displayname" />
-    <ul id="discussion">
-    </ul>
-    <div id="drawingModes">
-        <!--maybe someday...-->
-        @*
-        <button id="drawButton" class="toolbarButton">Draw</button>
-        <button id="squareButton" class="toolbarButton">Square</button>
-        <button id="circleButton" class="toolbarButton">Circle</button>*@
-    </div>
-    <div id="drawingOptions" style="display: inline-block; width:100%;">
-        <label for="drawingColor">Brush Color:</label>
-        <input type="color" value="#0a0a0a" id="drawingColor">
-        <br>
-        <label for="brushSize">Brush Size:</label>
-        <span id="brushSizeLabel">0</span>
-        <input type="range" value="10" min="1" max="30" id="brushSize">
-        <br>
-    </div>
-    <div class="row">
-        <canvas width="1000" height="1000" id="canvas" isDrawingMode="true" style="border: 2px solid;">
-        </canvas>
-    </div>
-</div>
+    <body style="display:none;overflow:scroll;">
+        <div class="flex-container">
+            <div style="float:left;min-width:1000px;">
+                <div class="tab">
+                    <button id="drawButton" class="toolbarButton"><img alt="pencil" width="20" height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfkChkCGwiCyWRGAAABB0lEQVRIx+2UvWrCYBSGT0KLg+BllEC3rhYUdLDQLk5egC5eh5PQwaFrh66lvQdvoEOWbqWl9AccRSoieRwSazSfek6G4tB3Cnx5nvOT8IkYQ5V3QgIrt8InAHzmVHDCB3G+Of1bBZe0k6eAr0ShH4QLfojoZhShHgccijcLnlVMqNrwTUUOfE2h2fwUVyI6y3f8HXhD7qXgPIpkvL96w9F8nDmtf/xw8cqW3wZmNPfiIhQZ5q6+Q6Fq/og+vlOhq04NuHUotM1zAw6FGvd/79m0wrC6cmrmpaJEXYmLcL22tkRhCC8bH65vw89S6Ig7rji2CXoAvDLg3Ny8iHg8yLM8ek92NM4C++xuRbfFkrAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMTAtMjVUMDI6Mjc6MDgrMDA6MDAunUnxAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTEwLTI1VDAyOjI3OjA4KzAwOjAwX8DxTQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII="><span style="padding-left:10px;">Draw</span></button>
+                    <button id="selectButton" class="toolbarButton"><img alt="selection" width="20" height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfkChkCGynOoHQYAAABoklEQVRIx7WVPWsUURSGnzu7dsZC0ELEIoWJGLDwN6TRQgMmlRgIplFs/AMpAiltooWu2ioWNgZLscgfiI1JJyFpBI1mRTDu7mOxO7szs068s8G3O5xzn/se7scBwGMuua22bAB42k0HanoNwBmb6r6vnSArg2v94j0Ap83rCYCNfvzFs+nqOjDHVeAz6xzwAoB3LDPZ36HJCgArJIxxnkuc5AFzAwfPVAu2SmXihvo9jRNgDCBsxQFChy3gRBbwA2jGLYdifR1YpsVaBUDV+v8vx33q9SPU+1zdrwDI1SfAcXpHGalcfRKx45S7LpZlIwBc4AyPvduPh+5BjAKrEh4Bw/fAV6qHtDDbe4OdjItcC5vAx0gXf0FgzWlPRTgodfEP5QDa8c7RAMMIZ/zW/QsjAUWEL9VWJUAGkQABqFmr1FfgYReRALsALIyKwMt2esaKc6Flo6SFtJHbXcQ9D0rmwt6hAP1UBwirvmeec7QLcyGNB/rJfb5m4g/V7sEvrxSzMc851W9uhLejA9rcCm8qnVOuhbY3R1oM4EV3XCjL/gHrZqQoKhrUQgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0xMC0yNVQwMjoyNzo0MSswMDowMD9PAtgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMTAtMjVUMDI6Mjc6NDErMDA6MDBOErpkAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAABJRU5ErkJggg=="><span style="padding-left:10px;">Select</span></button>
+                    <button id="importButton" class="toolbarButton"><img alt="import" width="20" height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfkChoAMBD25Hr5AAABlklEQVRIx+2UMUhVYRiGn/9yyrKhQEyF0BZxMCKChiJE6JY0OynR2iZBU1ibe3Nzs9XgkLiEFLQ4OOScQoNRlF7BW/fq03CPl3PPPZ17vEuL7/Kf83/v+5z/O/x8kCP7XXXD63Qr51R9lecp5RLOAdDbPaCATgAQNRYjrjLMqeb+athuNTrARPOlxhbr4eCo1ONzv9mquwA+VXURwHspx7bznobIs7xLsIvrIguUvR/xLI7X+cJOs7zbFthlrfl8nstEwCTzuKXqawfbP5JsIVUZ8o2qm3io6njWKf8NAK+oelgixA0cVzUAQuY98IlLtvxYr/nWBUOWuaGxxM64qvtOHbXgDX+qeifhGmsEswD97sSIZVU/x/E/jhYCgLetmFbdmRZPHiADkYp3BKQQbfECgASi7mxGtTMAnPS7FaczazEgyrsr4b1DlMLvPE8uAEKNDvr/I61EFYDhYydHAKgGP3IL+MULPvGjYLiPmzzmAvABp+KJ0I0OLAM+dK+reMUHNMaJl3hEmRHOFGyhyiYrvAxf4S9YjvFHNdEzWQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0xMC0yNlQwMDo0ODoxNiswMDowMOIiokUAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMTAtMjZUMDA6NDg6MTYrMDA6MDCTfxr5AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAABJRU5ErkJggg=="><span style="padding-left:10px;">Import</span></button>
+                    @*<button id="exportButton" class="toolbarButton"><img alt="save" width="20" height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfkChkCHDmcVvK7AAABH0lEQVRIx2P4v/8/DKxnYPhf8B8X2IAke/q/FAMUMDE4MJAOTBgO/JeGGUAeUGXYDzGCXAPgRpBvANQISgxgYFBl2ECZAQwMJpQawMCCxp/HsAGHym+EDdD9z8f4ieETLrv+szNYYYoy/v9PmRcoDoNRA6hgAANasdFPUH0/qgYWrIqkGDiwCP9gfIYpiMWA/2kMM3HYnss4hQgDGC4w7MIaNr8YjhPlAsZTDO7EhyE2L/Ay+DNwYVH7jWEj42divJDB0IXDuhqGVmIMWMbAw8CORfwrwxziwuApQz1lYaDGkMfAikXtb4apjNeJ8YIPQzYO6x4wEGXAZIazWF3wndh08JvhIPFhgF4mfmR4S0CHMAM/qgFHGKyJtw8D7AMAU3iJBjEXkCkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMTAtMjVUMDI6Mjg6NTcrMDA6MDBhPmzxAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTEwLTI1VDAyOjI4OjU3KzAwOjAwEGPUTQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII="><span style="padding-left:10px;">Export</span></button>*@
+                </div>
+                <div id="drawOptions" class="tabcontent" style="display:block;">
+                    <table style="table-layout: fixed;width:1000px;">
+                        <tr>
+                            <td width="50px">
+                                <input type="color" value="#0a0a0a" id="drawingColor">
+                            </td>
+                            <td width="75px">
+                                <span style="text-align:right;">
+                                    Brush Size:
+                                </span>
+                            </td>
+                            <td width="100px">
+                                <input type="range" value="10" min="1" max="30" id="brushSize">
+                            </td>
+                            <td width="15px">
+                                <span id="brushSizeLabel" style="text-align:left;">0</span>
+                            </td>
+                            <td wdith="760px"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="selectOptions" class="tabcontent">
+                    <button id="deleteButton" class="controlButton"><img alt="trash" width="20" height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfkChoAIiyhf3atAAABIElEQVRIx8WUMVLDQAxFXzyecAtoYYYTQKCBBui4AZzGHIgG0jCp03EBmDEXcCCYMBFFvOslKy8WKSIVK2n8n6XdtUG3IXe8IY2XFAwxWeHFzgsboEQ48tkIobQBBEnm3rJm3WNMHTTsRHpe88jub9A4mvkvf1gJBw2gtu4yX+yEADHKvdbtQW2Wf66WvEmvOTUCnv7Rc+ccABxyZdDd87xeujUd4o2TZR5QBbBjThIRwCxu6lK9d1okCBdxBwozYbMYUJkAVQzYuINtAdqLlPHtswHu89IiEHKW6x0s+ej9/ncnDwGWIYInQ0D/g6x0wMYdbAeQB+V2spE/UC3qBLTlSTLq3MSX3iO86uUD5r3+RnP2u8jnTFkkxQumnIWSHy9dw8SpV2h5AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTEwLTI2VDAwOjM0OjQ0KzAwOjAwDlpIBQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0xMC0yNlQwMDozNDo0NCswMDowMH8H8LkAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC"><span style="padding-left:10px;">Delete Selection</span></button>
+                    <button id="copyButton" class="controlButton"><img alt="copy" width="20" height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfkChoAIgHkoCrYAAAA8klEQVRIx+2UsQ4BQRCGP0euoafTqUkUh+fwCkrR8BA8ipegIRGi0noANQVOVrEn7tzembMq8W+zO5v/y2RmdyCuDnOOqMTls2OAQ4I6+Cnm55okAWYiu8KnChgSaSJTnroZUBQCwDUDMqoAQIUGJWD6CcJhwi0oDCAsoULR1YBBKPQBwKFnVwOHmi0gbwuw1B/wgwAXOIm9lzigCqyF9htbvQn/ryHQFg7V8YMUDh4oAy2WnFPNe/rP3KNXK8pZy/hKPzCipgemRLlgDsmVix6/8A7kfYeg91GAtO9am3ioxVU8h694Jqr3tu8KxZmFyX4Hy7jnWBPA3m0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMTAtMjZUMDA6MzQ6MDErMDA6MDDYKGlYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTEwLTI2VDAwOjM0OjAxKzAwOjAwqXXR5AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII="><span style="padding-left:10px;">Copy Selection</span></button>
+                </div>
+                <div id="importOptions" class="tabcontent">
+                    <button id="importImageButton" class="controlButton"><img alt="photo" width="20" height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA1VBMVEUAAAAAAAABAAMBAAIAAAABAAIBAAICAAIAAAICAAIBAAIBAAIAAAAAAAABAAMCAAIAAAAAAAQBAAIAAAMAAAABAAICAAIAAAQAAAIAAAAAAAABAAICAAIBAAIBAAIBAAEBAAMAAAACAAICAAIAAAABAAEAAAAAAAABAAIAAAICAAIBAAEBAAIAAAAAAAABAAIAAAQBAAICAAIAAAABAAIAAAMAAAAAAAAAAAIAAAACAAIAAAAAAAACAAICAAIAAAAAAAMAAAMAAAIBAAMAAAABAAIAAADLwwkWAAAARXRSTlMAP8P1Pv38pnGM5flAEcaJKEbkUgHvqEh6AzjZof7hrckqgaMCuCcS4HKeq/ojD9pC7Jwv41AhNHsamQs1l4IFWFVowj3bp9syAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAAd0SU1FB+QKGgA0CxjtdhEAAADqSURBVDjLhdPVDsMwDAVQr2k7Zmbmjpkx//9LS7KtW6XEvS+t5KMojmwA13g0QhUhms7qBkVi6KBRNBoQHBCgLpEA0+vzBxAQDLHWwhE1iIrmY2oQfz9PQgmSop5KK0FGgCzSRS4PUEhIQLFUfv9UqjVT0qZZhwb6UE2AVhsBZoddrdtTg5K4fCGoAuIAlr4KDD7zlRrKgTX6TuB4whudxmdOMP/N6ILQJeMrB7DWf1O82e74Z/4P9pJpP0x+wHGAnaNlg5N8Y8422MjBpcIBH3vv9SbLPc3H3mVxHqAbWN14AujY8j7dl/8F2bHB28u8yIsAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMTAtMjZUMDA6NTI6MTErMDA6MDDxKdPCAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTEwLTI2VDAwOjUyOjExKzAwOjAwgHRrfgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII="><span style="padding-left:10px;">Import Image</span></button>
+                    @*<button id="importJSONButton" class="controlButton"><img alt="document" width="20" height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfkChoAJCWO+WmPAAABTklEQVRIx6WVu0oDQRSGv0xcb4hgJQS8FFrYBdE2YiGIVUALCxtbGzufwFQ+gloIQh5A7QSbgChKHiCVmDYKQlS8sFa77u6c2ZlJzlR72P87//5nl4WoZriiSyieJjCJIrceDeIIUKVOUZepeP4ittrmXEdEgAmr3IBQTsIchC9AQ7gBAuA9gTj91w04AeYZ54Z9SnFnmbv0LeWcJYaE1BmW2YUY0LS4aNPgLXF9yLOPA/2Ue91CpvoGSFtocMCX0B+kxqoLoMWtOKxI283BLlv8CP2AMdcMCnhXco1nBqziWF+j9AizLPErhrjglkEl+57nlQT45JoPoT/CGkMuGRwZx9XcMtikQyj0A3bMj9LzxyQ5eOKE71Rng4otzPwM1v0c7DGXcqBYMU+WAKNUbYaT9D4rArx6K1+yjQevJd7rxGkujb/39OlywVQk+wNDDdUpPr7v/gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0xMC0yNlQwMDozNjozNyswMDowMDGCi7wAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMTAtMjZUMDA6MzY6MzcrMDA6MDBA3zMAAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAABJRU5ErkJggg=="><span style="padding-left:10px;">Import Canvas JSON</span></button>*@
+                </div>
+                @*<div id="exportOptions" class="tabcontent">
+            <button id="exportImageButton" class="controlButton"><img alt="photo" width="20" height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAA3QAAAN0BcFOiBwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADrSURBVFiF7ZaxDcIwEEXfIaiZgB0yQPq07MAo2SQT0ILEALAH9KSl+BTEEhKB2KcEhOQv/SJWfP/5itOZJDwysyWw7T7Xkq6uQpKSDSyAA6DOB2DhquUEaJ7Cg5uvAAB1T3hwPSkAsPkQHryZBACogFsEwA2oRgUACqCNCA9ugWIUAGAFnBPCg8/AagyAvSM8eD9UfzY8KbhE/OO+a90rk2RmvZckWWqtmA5MqgyQATJABsgAc3id7Z6ZHqO+HG8HdpFngzJJf9mB0ZQB5n2H7zaeKfTzDgSA0w+yH5ndUloCR/zrd6qPQCmJO93MjJ/A6MkBAAAAAElFTkSuQmCC"><span style="padding-left:10px;">Export Canvas as Image</span></button>
+            <button id="exportJSONButton" class="controlButton"><img alt="document" width="20" height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfkChoAJCWO+WmPAAABTklEQVRIx6WVu0oDQRSGv0xcb4hgJQS8FFrYBdE2YiGIVUALCxtbGzufwFQ+gloIQh5A7QSbgChKHiCVmDYKQlS8sFa77u6c2ZlJzlR72P87//5nl4WoZriiSyieJjCJIrceDeIIUKVOUZepeP4ittrmXEdEgAmr3IBQTsIchC9AQ7gBAuA9gTj91w04AeYZ54Z9SnFnmbv0LeWcJYaE1BmW2YUY0LS4aNPgLXF9yLOPA/2Ue91CpvoGSFtocMCX0B+kxqoLoMWtOKxI283BLlv8CP2AMdcMCnhXco1nBqziWF+j9AizLPErhrjglkEl+57nlQT45JoPoT/CGkMuGRwZx9XcMtikQyj0A3bMj9LzxyQ5eOKE71Rng4otzPwM1v0c7DGXcqBYMU+WAKNUbYaT9D4rArx6K1+yjQevJd7rxGkujb/39OlywVQk+wNDDdUpPr7v/gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0xMC0yNlQwMDozNjozNyswMDowMDGCi7wAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMTAtMjZUMDA6MzY6MzcrMDA6MDBA3zMAAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAABJRU5ErkJggg=="><span style="padding-left:10px;">Export Canvas as JSON</span></button>
+        </div>*@
+                <div id="canvas-container">
+                    <canvas id="canvas" height="800" width="1000" isDrawingMode="true" style="border: 1px solid;">
+                    </canvas>
+                </div>
+            </div>
+            <div id="chatContainer">
+                <table>
+                    <tr>
+                        <td>
+                            <span style="font-size:30px;">
+                                <strong>Room ID:</strong>
+                                <span id="groupID">@Model.RoomID</span>
+                            </span>
+                        </td>
+                        <td>
+                            <button id="copyRoomID" class="controlButton"><img alt="copyRoomID" width="30" height="30" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfkCwMXGSSaDpX3AAABs0lEQVRIx6WUOywEURSGPzsbhIhnvBJZUakUFJZVyEalpxJERU8lJIgW2Uo0CioKCaJSEAWFBLFCssWSCFGIYEWIdRWu2dmZe9cM/2nmzjn/fx73AXb4GCFGgj3a+RMiCGlvbiQMy3cRnTQzhc/0NfBANXG3uRfM3OnWkYnkA0LskgCKNDHFdHHDImUqp58QuxiAwadGIImfKvoJ0sirs4JpOYd6DpX0D44IyIghVUBCdjpHDos82/q/po88YnK1rBL4CU0ynLYnP6hg04xZcbqzEJbVFce8p/kLCZFvrlbpdg7RioDs1gN8Xgn6Cs6JamIMwtozYhliaYY0g/ohpioYZV9bQU+mJoQHS1XQRC8l3gUikj5GEsEldVaBNm2NBjMIBBtkAzBpcq6odScwq6QLBNtuW9giV0EXPLoT0NEFa6m7MMOBdp/WeQcmGbN5zgi7O0gAE47s51RZb6P6KG+wJOnjNs8FYW4h9aCobFtOXpP9GztaepKa3+nQyodG4HuoA47/p5Snd9PCPm8KgXkA1h3ZK/GE+P/oBXz+hw7BTL2D/VF14o57nogS5YRNXpwBX15uaJK33ZCLAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTExLTAzVDIzOjI1OjM2KzAwOjAwmG+BIQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0xMS0wM1QyMzoyNTozNiswMDowMOkyOZ0AAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC"></button>
+                            <span id="copiedNotif" style="font-size:12px;color:#68a69c;display:none;">Copied to clipboard!</span>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" id="displayname" style="width:100%;">
+                <ul id="discussion" style="width:100%;  border-top: 1px solid #b3b3b3; list-style-type:none;">
+                </ul>
+                <div style="width:500px;position:absolute; bottom:0;">
+                    <input type="button" class="toolbarButton" id="sendmessage" value="Send" style="float:right;height:25px;padding: 3px 3px;" />
+                    <div style="overflow: hidden; padding-right: 20px;">
+                        <input type="text" id="message" style="width:100%;">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+    <footer>
+        <input id="imageUpload" type='file' style="display:none;" />
+        <input type="text" id="roomIDCopy" style="display:none;" />
+    </footer>
+
 <script src="~/Scripts/js/fabric.js"></script>
 <script src="~/Scripts/VolatileCanvas.js"></script>
+
+<script>
+
+    function onEnterKey(buttonID, event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.getElementById(buttonID).click();
+        }
+    }
+
+    document.getElementById("message").addEventListener("keyup", function (event) {
+        onEnterKey('sendmessage', event);
+    });
+
+    var copyRoomIDElement = document.getElementById("copyRoomID");
+    copyRoomIDElement.onclick = function () {
+        var temp = document.createElement("input");
+        temp.setAttribute("value", document.getElementById('groupID').textContent);
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand("copy");
+        document.body.removeChild(temp);
+        $("#copiedNotif").fadeIn(300).delay(1000).fadeOut(300);
+    }
+
+    // Save additional attributes in Serialization
+    fabric.Object.prototype.toObject = (function (toObject) {
+        return function () {
+            return fabric.util.object.extend(toObject.call(this), {
+                id: this.id
+            });
+        };
+    })(fabric.Object.prototype.toObject);
+
+</script>
 
 @section scripts {
     <!--Script references. -->
@@ -43,51 +130,99 @@
     <script src="~/signalr/hubs"></script>
     <!--SignalR script to update the chat page and send messages.-->
     <script>
-      
+        var roomID = document.getElementById('groupID').textContent;
         $(function () {
+
             // Reference the auto-generated proxy for the hub.
-            var room = $.connection.drawingHub;
-            // Create a function that the hub can call back to display messages.
-            room.client.addNewMessageToPage = function (name, message) {
+            var hub = $.connection.drawingHub;
+            function syncCanvas() {
+                var canvasString = JSON.stringify(canvas);
+                hub.server.syncCanvas(roomID, canvasString);
+            }
+
+            function sayGoodbye() {
+                hub.server.send(roomID, '<strong>' + $('#displayname').val() + '</strong>: <i>has left the room.</i>.');
+            }
+
+            // Create functions that the hub can call back to display messages.
+            hub.client.addNewMessageToPage = function (message) {
                 // Add the message to the page.
-                $('#discussion').append('<li><strong>' + htmlEncode(name)
-                    + '</strong>: ' + htmlEncode(message) + '</li>');
+                $('#discussion').append('<li>' + message + '</li>');
             };
-            // Create a function that the hub can call back to display drawings
-            room.client.addNewDrawingToCanvas = function (jsonObject) {
-                // Parse JSON and add objects to canvas
-                var jsonObj = JSON.parse(jsonObject);
-                fabric.util.enlivenObjects([jsonObj], function (enlivenedObjects) {
-                    var newShape = enlivenedObjects[0];
-                    newShape.blockAddEvent = true;
-                    canvas.add(newShape);
-                    canvas.renderAll();
+
+            hub.client.refreshCanvas = function (canvasObjectString) {
+                if ((!canvasObjectString || 0 === canvasObjectString.length)) {
+                    return;
+                }
+                canvas.off('object:added', syncCanvas);
+                canvas.off('object:removed', syncCanvas);
+                canvas.off('object:modified', syncCanvas);
+                canvas.clear();
+                canvas.loadFromJSON(canvasObjectString, function () {
+                    canvas.on('object:added', syncCanvas);
+                    canvas.on('object:removed', syncCanvas);
+                    canvas.on('object:modified', syncCanvas);
                 });
             }
 
-            // Get the user name and store it to prepend to messages.
-            $('#displayname').val(prompt('Enter your name:', ''));
-            // Set initial focus to message input box.
-            $('#message').focus();
             // Start the connection.
             $.connection.hub.start().done(function () {
+
+                document.getElementById('copyButton').onclick = function () {
+                    copySelectedObjects(syncCanvas);
+                }
+                document.getElementById('deleteButton').onclick = function () {
+                    deleteSelectedObjects(syncCanvas);
+                }
+
+                //ensure we're in an existing room
+                hub.server.roomExists(roomID).done(function (result) {
+                    if (result == true) {
+                        //connect the current client to the room
+                        hub.server.joinRoom(roomID);
+                        //show contents
+                        hub.server.getCanvasState(roomID).done(function (result) {
+                            if ((!result || 0 === result.length)) {
+                                return;
+                            }
+                            canvas.off('object:added', syncCanvas);
+                            canvas.off('object:removed', syncCanvas);
+                            canvas.off('object:modified', syncCanvas);
+                            canvas.loadFromJSON(result, function () {
+                                canvas.on('object:added', syncCanvas);
+                                canvas.on('object:removed', syncCanvas);
+                                canvas.on('object:modified', syncCanvas);
+                            });
+                        });
+                        $('body').show();
+                        $(window).on('beforeunload', sayGoodbye);
+                        // Get the user name and store it to prepend to messages.
+                        var result = prompt('Enter your name:', '');
+                        if (result == null || result == "") { //give a default
+                            //if this gives duplicates... it'll just have to be that way
+                            result = 'user' + Math.floor(Math.random() * 1000);
+                        }
+                        $('#displayname').val(result);
+                        hub.server.send(roomID, '<strong>' + result + '</strong> <i>has entered the room.</i>');
+                    } else {
+                        //redirect the user to the home page
+                        window.location.href = '@Url.Action("Index", "Home")';
+                    }
+                });
                 $('#sendmessage').click(function () {
+                    if ($('#message').val() === "") {
+                        return;
+                    }
                     // Call the Send method on the hub.
-                    room.server.send($('#displayname').val(), $('#message').val());
+                    hub.server.send(roomID, '<strong>' + $('#displayname').val() + '</strong>: ' + $('#message').val());
                     // Clear text box and reset focus for next comment.
                     $('#message').val('').focus();
                 });
-                canvas.on('object:added', function (e) {
-                    if (e.target.blockAddEvent) {
-                        return false;
-                    }
-                    var objectString = JSON.stringify(e.target);
-                    // Call the SendDrawing method on the hub
-                    room.server.sendDrawing(objectString);
-                });
 
+                canvas.on('object:added', syncCanvas);
+                canvas.on('object:removed', syncCanvas);
+                canvas.on('object:modified', syncCanvas);
             });
-
         });
         // This optional function html-encodes messages for display in the page.
         function htmlEncode(value) {

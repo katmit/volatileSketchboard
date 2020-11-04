@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using VolitileSketchboard.Models;
 
 namespace VolatileSketchboard.Controllers
 {
@@ -15,8 +16,6 @@ namespace VolatileSketchboard.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
@@ -27,9 +26,10 @@ namespace VolatileSketchboard.Controllers
             return View();
         }
 
-        public ActionResult Draw()
+        public ActionResult Draw(string id)
         {
-            return View();
+            var room = new Room { RoomID = id };
+            return View(room);
         }
     }
 }

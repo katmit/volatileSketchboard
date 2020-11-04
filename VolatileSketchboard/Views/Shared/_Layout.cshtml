@@ -11,25 +11,24 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                @*style="display: table-cell;vertical-align: middle;"*@
+                @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <img alt="thunderbolt" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfkCwQCHAErR+zXAAABsklEQVRIx+WVv2sUURSFv7ckolhtZSHBjVmb1GrCFhLESiwS+7DIBgtRZIM/CkFFsVgsbIQIK4hFGtNqYbkWYiWkMCqI+w+kikUwG+ezSNTZzWR2ZlpvNe++c869970790Gq2bKVjhhJ32Z8yD6lYYBhNiyDbmYlJ5zLjJ1zIskZ2UyEz/dL2zRKDGbTyIU93ppbLsXWC/2BYmcQnviD3gC9zDKjrMVc21wOz7PWGnzthno281EOCNyy5131SDH6lD+96TXXi9HLdn1j8JmdNNw+nWjgBSPUg0zyKU1gv068wXlmwjowSdlXu96VsJJJwBqPuBPeA9Bmp+vGmObDXmywxTjQDbf/Vc9H1rgQjEmW6HCYqfC3T/7wkjK4T4UKkQDfwgkArnOak6GXkEFCARVO7X7OMhOOglVWaYUH5DWf+g4s2XHVA/luYceO8x24Qo3psJU7PvjFex5zw4cFyGDJTed962cPFhMYU1/6y1ohOnhG3fZxHkrDemx1Sf3qoQFM3UZ8HfuZbNLuu5UKEY2wORBllHbi7PSikYt9nnNeTcxzMXGoWs011qtZof/D2/gbaV/EZZAN6L0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMTEtMDRUMDI6Mjg6MDErMDA6MDDnuNahAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTExLTA0VDAyOjI4OjAxKzAwOjAwluVuHQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=">
+                </button>*@
                 @Html.ActionLink("Volatile Sketchboard", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li style="padding-top:8px;" >
+                        <img alt="thunderbolt" width="32" height="32" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfkCwQCHAErR+zXAAABsklEQVRIx+WVv2sUURSFv7ckolhtZSHBjVmb1GrCFhLESiwS+7DIBgtRZIM/CkFFsVgsbIQIK4hFGtNqYbkWYiWkMCqI+w+kikUwG+ezSNTZzWR2ZlpvNe++c869970790Gq2bKVjhhJ32Z8yD6lYYBhNiyDbmYlJ5zLjJ1zIskZ2UyEz/dL2zRKDGbTyIU93ppbLsXWC/2BYmcQnviD3gC9zDKjrMVc21wOz7PWGnzthno281EOCNyy5131SDH6lD+96TXXi9HLdn1j8JmdNNw+nWjgBSPUg0zyKU1gv068wXlmwjowSdlXu96VsJJJwBqPuBPeA9Bmp+vGmObDXmywxTjQDbf/Vc9H1rgQjEmW6HCYqfC3T/7wkjK4T4UKkQDfwgkArnOak6GXkEFCARVO7X7OMhOOglVWaYUH5DWf+g4s2XHVA/luYceO8x24Qo3psJU7PvjFex5zw4cFyGDJTed962cPFhMYU1/6y1ohOnhG3fZxHkrDemx1Sf3qoQFM3UZ8HfuZbNLuu5UKEY2wORBllHbi7PSikYt9nnNeTcxzMXGoWs011qtZof/D2/gbaV/EZZAN6L0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMTEtMDRUMDI6Mjg6MDErMDA6MDDnuNahAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTExLTA0VDAyOjI4OjAxKzAwOjAwluVuHQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=">
+                    </li>
+                    <li style="padding-left:20px;">@Html.ActionLink("Development", "About", "Home")</listyle="padding-top:8px;">
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div>
         @RenderBody()
-        <hr />
     </div>
 
     @Scripts.Render("~/bundles/jquery")

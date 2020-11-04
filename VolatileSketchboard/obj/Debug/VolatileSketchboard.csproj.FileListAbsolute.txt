@@ -92,3 +92,5 @@ C:\Users\Katherine\source\repos\VolatileSketchboard\VolatileSketchboard\obj\Debu
 C:\Users\Katherine\source\repos\VolatileSketchboard\VolatileSketchboard\obj\Debug\VolatileSketchboard.csproj.CopyComplete
 C:\Users\Katherine\source\repos\VolatileSketchboard\VolatileSketchboard\obj\Debug\VolitileSketchboard.dll
 C:\Users\Katherine\source\repos\VolatileSketchboard\VolatileSketchboard\obj\Debug\VolitileSketchboard.pdb
+C:\Users\Katherine\source\repos\VolatileSketchboard\VolatileSketchboard\obj\Debug\VolitileSketchboard.Properties.Resources.resources
+C:\Users\Katherine\source\repos\VolatileSketchboard\VolatileSketchboard\obj\Debug\VolatileSketchboard.csproj.GenerateResource.cache
